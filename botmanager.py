@@ -54,7 +54,7 @@ else:
     baseconfig.set('base','port',str(port))
     baseconfig.set('base','tg_cli_bin',str(tg_cli_bin))
     baseconfig.set('base','tg_cli_config',str(tg_cli_config))
-    caseconfig.set('base','tb_bots_dir',str(tg_bots_dir))
+    baseconfig.set('base','tg_bots_dir',str(tg_bots_dir))
     baseconfig.set('base','tg_start',str(tg_start))
     baseconfig.set('base','cw_script',str(cw_script))
     baseconfig.set('base','cw_start',str(cw_start))
@@ -114,7 +114,11 @@ def update_cfg_files():
     tg_cli_config_f = open(tg_cli_config, 'w')
     tg_start_f = open (tg_start, 'w')
     cw_start_f = open (cw_start, 'w')
+    
+    tg_start_f.write("#!/bin/bash\n")
+    cw_start_f.write("#!/bin/bash\n")
 
+    
     c.execute("SELECT name, castle, admin, orders, groups, port FROM bots WHERE 1;")
     for row in c:
         bot_name = row[0]
